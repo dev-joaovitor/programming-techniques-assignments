@@ -1,0 +1,4 @@
+# ignoring output files
+*.o
+*.out
+*.build
