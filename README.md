@@ -16,8 +16,12 @@ The project consists in a basic inventory management for input and output produc
 The purpose of this project is to practice OOP in the C++ language; applying class, method and attribute concepts.
 
 #### What should it do?
-
-##### I/O
+- [ ] Have a system menu
+- [ ] Insert a new item
+- [ ] Update the quantity of an existing item
+- [ ] Update the name of an existing item
+- [ ] Remove an existing item
+- [ ] Quit the system
 
 #### How to run?
 
