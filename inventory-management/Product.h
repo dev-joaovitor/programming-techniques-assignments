@@ -1,4 +1,3 @@
-#include <iostream>
 #include <unordered_map>
 #include <string>
 
@@ -28,8 +27,11 @@ public:
     const void setQuantity(const unsigned int& quantity) { this->quantity = quantity; };
 
     // static members function
-    static const void list();
+    static const void list(const bool& full);
+    static const unsigned int askForId();
     static const void createOne();
+    static const void use();
+    static const void restock();
     static const void updateOne();
     static const void deleteOne();
     static const void deleteAll();
