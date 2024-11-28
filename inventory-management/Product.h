@@ -15,6 +15,7 @@ private:
 public:
     // static members
     static unsigned int lastId;
+    static std::unordered_map<unsigned int, Product*> products;
 
     // getters
     const unsigned int getId() const { return this->id; }
@@ -27,8 +28,10 @@ public:
     const void setQuantity(const unsigned int& quantity) { this->quantity = quantity; };
 
     // static members function
-    static const void list(const std::unordered_map<unsigned int, Product*>& products);
-    static Product* create();
+    //static const void list(const std::unordered_map<unsigned int, Product*>& products);
+    static const void list();
+    static const void create();
+    static const void deleteAll();
 
     // constructor
     Product(const std::string& name, const unsigned int& quantity);

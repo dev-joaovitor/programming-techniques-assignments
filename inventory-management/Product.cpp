@@ -9,15 +9,15 @@ Product::Product(const std::string& name, const unsigned int& quantity)
     this->setId(++this->lastId);
 }
 
-const void Product::list(const std::unordered_map<unsigned int, Product*>& products)
+const void Product::list()
 {
-    if (products.size() < 1) {
+    if (Product::products.size() < 1) {
         std::cout << "\n[NO PRODUCTS AVAILABLE]\n";
         return;
     }
 
     std::cout << "\n[AVAILABLE PRODUCTS]\n";
-    for (auto& product : products) {
+    for (auto& product : Product::products) {
         Product* p{ product.second };
 
         std::cout << "[" << p->getId() << "] - "
@@ -25,7 +25,7 @@ const void Product::list(const std::unordered_map<unsigned int, Product*>& produ
     }
 }
 
-Product* Product::create()
+const void Product::create()
 {
     std::string name{};
     unsigned int quantity{};
@@ -37,7 +37,15 @@ Product* Product::create()
     std::cout << "Quantity: ";
     std::cin >> quantity;
 
-    return new Product(name, quantity);
+    Product::products[Product::lastId] = new Product(name, quantity);
+}
+
+const void Product::deleteAll()
+{
+    for (auto& product : Product::products) {
+        delete product.second;
+    }
 }
 
 unsigned int Product::lastId{ 0 };
+std::unordered_map<unsigned int, Product*> Product::products{};
