@@ -11,7 +11,7 @@ Product::Product(const std::string& name, const unsigned int& quantity)
 
 const void Product::list()
 {
-    if (Product::products.size() < 1) {
+    if (Product::products.empty()) {
         std::cout << "\n[NO PRODUCTS AVAILABLE]\n";
         return;
     }
@@ -25,7 +25,7 @@ const void Product::list()
     }
 }
 
-const void Product::create()
+const void Product::createOne()
 {
     std::string name{};
     unsigned int quantity{};
@@ -40,12 +40,41 @@ const void Product::create()
     Product::products[Product::lastId] = new Product(name, quantity);
 }
 
+const void Product::updateOne()
+{
+}
+
+const void Product::deleteOne()
+{
+    if (Product::products.empty()) {
+        std::cout << "\n[NO PRODUCTS AVAILABLE]\n";
+        return;
+    }
+    Product::list();
+    unsigned int productId{};
+    std::cout << "\nEnter the id of the product which will be deleted: ";
+    std::cin >> productId;
+
+    if (Product::products.find(productId)
+        == Product::products.end()) {
+        std::cout << "\n[INVALID PRODUCT ID]\n";
+        return;
+    }
+    delete Product::products[productId];
+    Product::products.erase(productId);
+
+    std::cout << "\n[PRODUCT " << productId
+        << " SUCCESSFULLY DELETED]\n";
+}
+
 const void Product::deleteAll()
 {
     for (auto& product : Product::products) {
         delete product.second;
     }
+    Product::products.clear();
 }
 
 unsigned int Product::lastId{ 0 };
 std::unordered_map<unsigned int, Product*> Product::products{};
+

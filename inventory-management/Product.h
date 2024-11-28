@@ -28,9 +28,10 @@ public:
     const void setQuantity(const unsigned int& quantity) { this->quantity = quantity; };
 
     // static members function
-    //static const void list(const std::unordered_map<unsigned int, Product*>& products);
     static const void list();
-    static const void create();
+    static const void createOne();
+    static const void updateOne();
+    static const void deleteOne();
     static const void deleteAll();
 
     // constructor
