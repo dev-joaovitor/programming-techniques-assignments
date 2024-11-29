@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include "Product.h"
 
 Product::Product(const std::string& name, const unsigned int& quantity)

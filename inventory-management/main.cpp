@@ -1,7 +1,18 @@
 #include <iostream>
 #include "Product.h"
+#include "Employee.h"
 
-const void handleOptions(unsigned short& option)
+const void handleEmployeeOptions(unsigned short& option)
+{
+    std::cout << "\n[LOGIN]\n";
+    std::cout << "\n1 - Login";
+    std::cout << "\n2 - Register";
+    std::cout << "\n0 - EXIT";
+    std::cout << "\nSelect an option: ";
+    std::cin >> option;
+}
+
+const void handleProductOptions(unsigned short& option)
 {
     std::cout << "\n[OPTIONS]\n";
     std::cout << "\n1 - Insert product";
@@ -18,9 +29,37 @@ const void handleOptions(unsigned short& option)
 int main()
 {
     unsigned short option{};
+    bool isLoggedIn{};
 
     do {
-        handleOptions(option);
+        if (isLoggedIn) break;
+
+        handleEmployeeOptions(option);
+        
+        switch(option)
+        {
+            case 1:
+                isLoggedIn = Employee::logIn();
+                break;
+            case 2:
+                if (Employee::registerEmployee())
+                    std::cout << "\n[EMPLOYEE SUCCESSFULLY REGISTERED\n";
+                else std::cout << "\n[EMPLOYEE NOT REGISTERED]\n";
+                break;
+            case 0: break;
+            default:
+                std::cout << "\n[INVALID OPTION]\n";
+        }
+    } while(option != 0);
+
+    if (!isLoggedIn) {
+        std::cout << "\n[UNAUTHORIZED]\n";
+        return 0;
+    }
+
+    do {
+        handleProductOptions(option);
+
         switch(option)
         {
             case 1:
@@ -48,6 +87,8 @@ int main()
     } while(option != 0);
 
     Product::deleteAll();
+
+    std::cout << "\nUntil next time =D\n";
 
     return 0;
 }
