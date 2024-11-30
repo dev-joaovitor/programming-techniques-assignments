@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <ctime>
 #include <iostream>
 #include <string>
@@ -89,6 +90,7 @@ const void Product::restock()
     std::cin >> quantityToRestock;
 
     p->setQuantity(p->getQuantity() + quantityToRestock);
+    p->updated_at = time(NULL);
 
     std::cout << "\nQuantity updated: " << p->getQuantity() << '\n';
 }
@@ -117,6 +119,7 @@ const void Product::use()
         return;
     }
     p->setQuantity(p->getQuantity() - quantityToUse);
+    p->updated_at = time(NULL);
 
     std::cout << "\nQuantity remaining: " << p->getQuantity() << '\n';
 }
