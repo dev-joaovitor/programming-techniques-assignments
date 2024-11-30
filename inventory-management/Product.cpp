@@ -1,13 +1,16 @@
+#include <ctime>
 #include <iostream>
 #include <string>
 #include <unordered_map>
 #include "Product.h"
 
 Product::Product(const std::string& name, const unsigned int& quantity)
-    : name { name }
+    : id { ++this->lastId }
+    , name { name }
     , quantity { quantity }
+    , created_at { time(NULL) }
+    , updated_at { time(NULL) }
 {
-    this->setId(++this->lastId);
 }
 
 const void Product::list(const bool& full)
@@ -21,16 +24,17 @@ const void Product::list(const bool& full)
     for (auto& product : Product::products) {
         Product* p{ product.second };
 
-        std::cout << "[" << p->getId() << "] - ";
-
         if (full)
-            std::cout << "Name: "
-                << p->getName()
-                << " | Qty.: " << p->getQuantity();
+            std::cout << "\n[" << p->getId() << "]\n"
+                << " | Name: "
+                << p->getName() << '\n'
+                << " | Quantity: " << p->getQuantity() << '\n'
+                << " | Created: " << ctime(&p->created_at)
+                << " | Last Updated: " << ctime(&p->updated_at)
+                << " -\n";
         else
-            std::cout << p->getName();
-
-        std::cout << '\n';
+            std::cout << "\n[" << p->getId() << "] - "
+                << p->getName() << '\n';
     }
 }
 
@@ -153,6 +157,7 @@ const void Product::updateOne()
         std::cin >> quantity;
         p->setQuantity(quantity);
     }
+    p->updated_at = time(NULL);
 }
 
 const void Product::deleteOne()

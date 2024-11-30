@@ -4,10 +4,11 @@
 #include "Employee.h"
 
 Employee::Employee(const std::string& username, const std::string& password)
-    : username { username }
+    : id { ++this->lastId }
+    , username { username }
     , password { password }
+    , created_at { time(NULL) }
 {
-    this->setId(++Employee::lastId);
 }
 
 const bool Employee::hasUnextractedInput()

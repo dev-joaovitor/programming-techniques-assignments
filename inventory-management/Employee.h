@@ -10,6 +10,7 @@ private:
     unsigned int id{};
     std::string username{};
     std::string password{};
+    time_t created_at{};
 
     const void setId(const unsigned int& id) { this->id = id; };
     const std::string& getPassword() const { return this->password; };

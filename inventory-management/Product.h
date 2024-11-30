@@ -10,6 +10,8 @@ private:
     unsigned int id{};
     std::string name{};
     unsigned int quantity{};
+    time_t created_at{};
+    time_t updated_at{};
 
     const void setId(const unsigned int& id) { this->id = id; };
 public:
