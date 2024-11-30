@@ -40,10 +40,13 @@ int main()
         {
             case 1:
                 isLoggedIn = Employee::logIn();
+
+                if (!isLoggedIn)
+                    std::cout << "\n[WRONG PASSWORD]\n";
                 break;
             case 2:
                 if (Employee::registerEmployee())
-                    std::cout << "\n[EMPLOYEE SUCCESSFULLY REGISTERED\n";
+                    std::cout << "\n[EMPLOYEE SUCCESSFULLY REGISTERED]\n";
                 else std::cout << "\n[EMPLOYEE NOT REGISTERED]\n";
                 break;
             case 0: break;
@@ -56,6 +59,8 @@ int main()
         std::cout << "\n[UNAUTHORIZED]\n";
         return 0;
     }
+
+    std::cout << "\n[LOGIN SUCCESSFULL]\n";
 
     do {
         handleProductOptions(option);
