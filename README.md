@@ -29,7 +29,7 @@ The purpose of this project is to practice OOP in the C++ language; applying cla
 
 ```sh
 cd ./inventory-management
-g++ main.cpp Product.cpp -o main.o
+g++ main.cpp product/Product.cpp employee/Employee.cpp -o main.o
 ./main.o
 ```
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Product.h"
-#include "Employee.h"
+#include "product/Product.h"
+#include "employee/Employee.h"
 
 const void handleEmployeeOptions(unsigned short& option)
 {
